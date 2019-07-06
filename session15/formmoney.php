@@ -4,20 +4,54 @@
 	<meta charset="UTF-8">
 	<title>Form-Tiền điện</title>
 	<style type="text/css">
-		.error {
-			color: red;
-		}
-		body {
-			width: 50%;
-			margin: 0 auto;
-		}
-	</style>
+	.error {
+		color: red;
+	}
+	body {
+		width: 50%;
+		margin: 0 auto;
+	}
+</style>
 
 </head>
 <body>
 	<?php
 	$errUserName = $errGender = $errAdd =$errCustomer = $errNumberFirst = $errNumberLast = $errDayFirst = $errDayLast = '';
 	$username = $gender = $add = $customer = $numberfirst = $numberlast = $dayfirst = $daylast = '';
+	$checkSubmit = true;
+
+	function CalNoTax ($number){
+		if ($number <= 100){
+			$money = $number*1500;
+		}
+		if ($number >100 && $number <=200) {
+			$money = 100*1500 + ($number-100)*2000;
+		}
+		if ($number > 200) {
+			$money = 100*1500 + ($number-100)*2000 + ($number - 200) *3500;
+		}
+		return $money;
+	}
+
+
+	function Cal($number, $customer){
+		$money = 0;
+		switch ($customer) {
+			case '1':
+			$money = CalNoTax($number);
+			$money = $money + ($money*10/100);
+				break;
+			case '2':
+			$money = CalToTax ($number);
+			$money = $money + ($money*12/100);
+				break;
+			case '3':
+			$money = CalToTax ($number);
+			$money = $money + ($money*15/100);
+				break;	
+		}
+		return number_format($money,0,",",".");;
+	}
 	if (isset($_POST['username'])) {
 		$username = $_POST['username'];
 		$add = $_POST['add'];
@@ -29,37 +63,49 @@
 		$daylast = $_POST['daylast'];
 		if ($username == '') {
 			$errUserName = 'Please input your username';
+			$checkSubmit = false;
 		}
 		if ($add == '') {
 			$errAdd = 'Please input your add';
+			$checkSubmit = false;
 		}
 		if ($gender == '') {
 			$errGender = 'Please input your gender';
+			$checkSubmit = false;
 		}
 		if ($customer == '') {
 			$errCustomer = 'Please input your customer';
+			$checkSubmit = false;
 		}
 		if ($numberfirst == '') {
 			$errNumberFirst = 'Please input your numberfirst';
+			$checkSubmit = false;
 		}
 		if ($numberlast == '') {
 			$errNumberLast = 'Please input your numberlast';
+			$checkSubmit = false;
 		}
 		if ($dayfirst == '') {
 			$errDayFirst = 'Please input your numberlast';
+			$checkSubmit = false;
 		}
 		if ($daylast == '') {
 			$errDayLast = 'Please input your numberlast';
+			$checkSubmit = false;
 		}
 		if ($numberfirst > $numberlast) {
 			$errNumberLast = $errNumberFirst = 'Please input check between numberfirst and numberlast';
+			$checkSubmit = false;
 		}
 		if ($dayfirst > $daylast){
 			$errDayLast = $errDayFirst = 'Please input check between dayfirst and daylast';
+			$checkSubmit = false;
 		}
-
+		if($checkSubmit) {
+			echo Cal ($numberlast - $numberfirst, $customer);
+		}
 	}
-	?>
+?>
 
 
 
@@ -81,9 +127,9 @@
 		<p>Customer
 			<select name="customer">
 				<option value=''>Phân loại khách hàng</option>
-				<option value='1'> <?php echo ($customer == '1')?'selected':''?> dân dụng</option>
-				<option value='2'> <?php echo ($customer == '2')?'selected':''?> Kinh doanh</option>
-				<option value='3'> <?php echo ($customer == '3')?'selected':''?> Sản xuất</option>
+				<option value='1' <?php echo ($customer == '1')?'selected':''?>> dân dụng</option>
+				<option value='2' <?php echo ($customer == '2')?'selected':''?>> Kinh doanh</option>
+				<option value='3' <?php echo ($customer == '3')?'selected':''?>> Sản xuất</option>
 			</select>
 		</p>
 		<p class="error"><?php echo $errCustomer; ?></p>	

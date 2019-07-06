@@ -70,6 +70,8 @@
 			<input type="file" name="avatar">
 		</p>
 		<p><input type="submit" name="register"></p>
+	
 	</form>
+
 </body>
 </html>
