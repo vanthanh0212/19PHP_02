@@ -5,6 +5,7 @@
 	$database = '19php02';
 	//ham kết nối
 	$connect = mysqli_connect($server, $username, $password, $database);
+  mysqli_set_charset($connect,"utf8");
 	// Check connection
 	// var_dump($connect);
 	if (mysqli_connect_error())

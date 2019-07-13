@@ -12,14 +12,21 @@
 <body>
 	<?php 
 	require_once 'connect.php';
+	//Lấy thông tin cũ theo id
+	$id = $_GET['id'];
+	$sql = "SELECT * FROM news WHERE id = $id";
+	$editNews = mysqli_query($connect,$sql);
+	$oldNews = $editNews -> fetch_assoc();
+	//end
+
 	$title = $description = $created= '';
 	$errTitle = $errDescription = $errCreated = '';
 	$checkSubmit = true;
-	if (isset($_POST['title'])){
+	if (isset($_POST['register'])){
 		$title = $_POST['title'];
 		$description = $_POST['description'];
 		$created = $_POST['created'];
-		$avatar = "default.png";
+		$avatar = $oldNews['avatar'];
 		if ($title == '') {
 			$errTitle = 'Please input your title';
 			$checkSubmit = false;
@@ -42,7 +49,7 @@
 				//echo Cal($end_number - $start_number, $customer_type);
 			//chèn dữ liệu vào database
 
-				$sql = "INSERT INTO news(title, description, avatar, created) VALUES ('$title', '$description', '$avatar', '$created')";
+				$sql = "UPDATE news SET title = '$title', description = '$description', avatar = '$avatar', created = '$created' WHERE id = $id";
 
 				mysqli_query($connect, $sql);
 				// Chuyen trang
@@ -50,23 +57,24 @@
 			}
 	}
 	?>
-	<h1>Form đăng ký</h1>
+	<h1>Edit Form</h1>
 	<form action="#" method="POST" enctype="multipart/form-data">
 		<p>Title
-			<input type="text" name="title">
+			<input type="text" name="title" value="<?php echo $oldNews['title']; ?>">
 		</p>
 		<p class="error"><?php echo $errTitle; ?></p>
 		<p>Description
-			<input type="text" name="description">
+			<input type="text" name="description" value="<?php echo $oldNews['description']; ?>">
 		</p>
 		<p class="error"><?php echo $errDescription; ?></p>
 		<p>Avatar
 			<input type="file" name="avatar">
+			<img src="loadimage/<?php echo $oldNews['avatar']?>" alt="" width="100px">
 		</p>
 		<p>Created
-			<input type="date" name="created>
+			<input type="date" name="created" value="<?php echo $oldNews['created']; ?>">
 		</p>
-		<p class="error"><?php echo $errCreated;?></p>
+		<p class="error"><?php echo $errCreated; ?></p>
 		<p><input type="submit" name="register"></p>
 	</form>
 </body>
