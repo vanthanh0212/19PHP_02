@@ -34,7 +34,7 @@
 <body>
 	<?php 
 	require_once'config/connect.php';
-	$sql = "SELECT * FROM products1";
+	$sql = "SELECT products1.id, category1.name, products1.title, products1.description, products1.image, products1.price, products1.created, products1.updated, products1.updated FROM products1 INNER JOIN category1 ON products1.id = category1.id";
 	$listProducts1 = mysqli_query($connect, $sql);
 	?>
 	<h1>List Products1</h1>
@@ -58,7 +58,7 @@
 	 ?>
 		<tr>
 			<td><?php echo $products1['id'] ?></td>
-			<td><?php echo $products1['category'] ?></td>
+			<td><?php echo $products1['name'] ?></td>
 			<td><?php echo $products1['title'] ?></td>
 			<td><?php echo $products1['description'] ?></td>
 			<td><img src="loading/<?php echo $products1['image'] ?>" alt=""></td>

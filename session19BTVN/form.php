@@ -90,7 +90,7 @@
 				<div class="col-md-4">
 					<select name="category">
 						<option value="">Please choose categoty</option>
-						<option value="1" >High Quality</option>
+						<option value="High Quality" >High Quality</option>
 						<option value="2" >Medium Quality</option>
 						<option value="3" >Low Quality</option>
 					</select>	
