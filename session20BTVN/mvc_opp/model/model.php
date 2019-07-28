@@ -25,8 +25,8 @@ class Model extends ConnectDB
 		$sql = "SELECT * FROM products WHERE id= $id";
 		return mysqli_query($this->connect(), $sql);
 	}
-	function editProducts($id, $title, $description, $price) {
-		$sql = "UPDATE products SET title='$title', description='$description', price='$price' WHERE id = $id";
+	function editProducts($id, $title, $description, $image, $price) {
+		$sql = "UPDATE products SET title='$title', description='$description', image ='$image', price='$price' WHERE id = $id";
 		return mysqli_query($this->connect(),$sql);
 	}
 	//end model products

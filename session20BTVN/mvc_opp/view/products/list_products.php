@@ -57,7 +57,7 @@
 	 	<td><?php echo $products['title']?></td>
 	 	<td><?php echo $products['description']?></td>
 	 	<td><img src="uploads/products/<?php echo $products['image'];?>" alt=""></td>
-	 	<td><?php echo $products['price']?></td>
+	 	<td><?php echo $products['price'];?></td>
 	 	<td><?php echo $products['created']?></td>
 	 	<td>
 	 		<a href="index.php?action=edit_products&id=<?php echo $id;?>">Edit</a> | <a href="index.php?action=delete_products&id=<?php echo $id;?>">Delete</a>
