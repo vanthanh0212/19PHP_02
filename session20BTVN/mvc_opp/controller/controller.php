@@ -94,25 +94,7 @@ class Controller {
 			include 'view/user/list_user.php';
 			break;
 
-			case 'add_user':
-						# code...
-			if (isset($_POST['add_user'])) {
-						# code...
-				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$avatar = 'default.png';
-				if ($_FILES['avatar']['error']==0) {
-					$avatar = $_FILES['avatar']['name'];
-					move_uploaded_file($_FILES['avatar']['tmp_name'], 'uploads/user/'.$avatar);
-				}
-				$model = new Model();
-				if ($model -> addUser($username,$password, $avatar)===TRUE) {
-							# code...
-					header("Location: index.php?action=user");
-				}	
-			}
-			include 'view/user/add_user.php';
-			break;
+
 
 			case 'delete_user':
 						# code...
@@ -149,10 +131,63 @@ class Controller {
 			break;
 
 				//end controller user
-			default:
+			case 'add_user':
 						# code...
+			if (isset($_POST['add_user'])) {
+						# code...
+				$username = $_POST['username'];
+				$password = $_POST['password'];
+				$avatar = 'default.png';
+				if ($_FILES['avatar']['error']==0) {
+					$avatar = $_FILES['avatar']['name'];
+					move_uploaded_file($_FILES['avatar']['tmp_name'], 'uploads/user/'.$avatar);
+				}
+				$model = new Model();
+				if ($model -> addUser($username,$password, $avatar)===TRUE) {
+							# code...
+					header("Location: index.php?action=user");
+				}	
+			}
+			include 'view/user/add_user.php';
 			break;
+
+			//start login
+			case 'login':
+
+		// } header("Location: index.php?action=login");
+
+
+			$username = $password ='';
+			$errorUsername = $errorPassword ='';
+			$myusername = 'admin';
+			$mypassword = '123456';
+			if (isset($_POST['submit'])) {
+				$username  = $_POST['username'];
+				$password = $_POST['password'];
+				$model = new Model();
+				if ($model->add_login($username, $password) == TRUE) {
+					
+					header("Location: index.php?action=login");
+					
+				}
+			}
+				include'view/login/login.php';
+				break;
+			//end login
+
+			//start add login
+			//end add login
+
+				include'view/logout/logout.php';
+			//start logout
+
+
+			// header("Location: ../index.php");
+			//end logout
+						# code...
+				break;
+				default;
+			}
 		}
 	}
-}
-?>
+	?>

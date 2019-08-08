@@ -62,8 +62,21 @@ class Model extends ConnectDB
 	}
 	//end model user
 
+	//start login
+	function checkLogin($usernam, $password)
+	{
+		$sql = "SELECT * FROM users WHERE username = '$username' and password = '$password'";
+		return mysqli_query($this->connect(),$sql);
+	}
+	//end login
 
+	//start logout
+	function logout($username)
+	{
+		session_start();
+		echo $_SESSION['username'];
+	}
 
 
 }
- ?>
+?>
