@@ -41,4 +41,3 @@
 		</div>
 	</div>
 </div>
-<a href="admin.php?controller=news&action=add_news" class="btn btn-success btn-block">Add News</a>

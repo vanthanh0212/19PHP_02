@@ -43,4 +43,3 @@
 		</div>
 	</div>
 </div>
-<a href="admin.php?controller=products&action=add_products" class="btn btn-success btn-block">Add Products</a>

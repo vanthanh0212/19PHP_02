@@ -1,0 +1,64 @@
+.sanpham {
+	position: relative;
+	top: 10px;
+	left: 10px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.xam {
+    width: 255px;
+    height: 255px;
+    background: red;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.6s;
+    transform: scale(0);
+
+}
+.sanpham:hover .xam{
+	opacity: 0.5;
+	transform: scale(2);
+}
+
+
+
+/*.icon {
+    position: absolute;
+    width: 90%;
+    top: 30%;
+    z-index: 3;
+    transition: 0.4s;
+    opacity: 0;
+    transform: scale(0);
+    border: 20px solid black;
+}
+.sanpham:hover .icon {
+	opacity: 0.6;
+}*/
+.hinhvuong {
+	position: absolute;
+    width: 80%;
+    height: 80%;
+        top: 10%;
+    left: 10%;
+	z-index: 2;
+	opacity: 0;
+	transition: 0.5s;
+	border: 2px solid white;
+	transform: scale(0);
+}
+.hinhvuong a {
+	position: absolute;
+	width: 80%;
+	top:35%;
+	left: 10%;
+	font-size: 1.5rem;
+	text-decoration: none;
+}
+.sanpham:hover .hinhvuong {
+	transform: scale(1);
+	opacity: 1;
+}

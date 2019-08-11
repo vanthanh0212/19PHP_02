@@ -59,8 +59,8 @@ session_start();
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<?php if (isset($_SESSION['username'])) {?>
-							<li class="logout">Hi, <?php echo $_SESSION['username']; ?></li>
+						<?php if (isset($_SESSION['login']['username'])) {?>
+							<li class="logout">Hi, <?php echo $_SESSION['login']['username']; ?></li>
 							<li><a href="index.php?controller=users&action=logout">Logout</a></li>
 							<li><a href="admin.php">Admin</a></li>
 						<?php }else{ ?>
@@ -93,5 +93,13 @@ session_start();
 			$front->handleRequest();
 			?>
 			<!-- <script src="webroot/js/bootstrap.min.js"></script> -->
+
+			<script>
+				
+				function addCart($id) {
+					// body...
+					alert(id);
+				}
+			</script>
 		</body>
 		</html>

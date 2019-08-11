@@ -19,6 +19,13 @@
 						<label for="inputAddress">Password</label>
 						<input type="password" class="form-control" id="inputAddress" placeholder="Password" name="password">
 					</div>
+					<div class="form-group col-md-12">
+						<label for="inputAddress">Role</label>
+						<select name="role" id="inputRole" class="form-control" required="required">
+							<option value="admin">Admin</option>
+							<option value="customer">Customer</option>
+						</select>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-6 col-md-push-3 text-center">

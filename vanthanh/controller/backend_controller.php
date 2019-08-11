@@ -43,70 +43,70 @@ class BackendController
 		switch ($action)
 		{
 			case 'list_products':
-			$listProducts = $backModel -> getListProducts();
-			include 'view/product/list_products.php';
+				$listProducts = $backModel -> getListProducts();
+				include 'view/product/list_products.php';
 			break;
 			case 'add_products':
 					// code...
-			if (isset($_POST['add_products'])) 
-			{
-				$title = $_POST['title'];
-				$description = $_POST['description'];
-				$price = $_POST['price'];
-				$image = "default.png";
-				if ($_FILES['image']['error']==0) 
+				if (isset($_POST['add_products'])) 
 				{
-					$image = $_FILES['image']['name'];
-					move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/products/'.$image);
-				}
-					// var_dump($title);exit();
-				if ($backModel -> addProducts($title, $description, $image, $price)==TRUE)
-				{
-					$libs-> redirectPage('admin.php?controller=products&action=list_products');
-				}
+					$title = $_POST['title'];
+					$description = $_POST['description'];
+					$price = $_POST['price'];
+					$image = "default.png";
+					if ($_FILES['image']['error']==0) 
+					{
+						$image = $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/products/'.$image);
+					}
+						// var_dump($title);exit();
+					if ($backModel -> addProducts($title, $description, $image, $price)==TRUE)
+					{
+						$libs-> redirectPage('admin.php?controller=products&action=list_products');
+					}
 
-			}
-			include 'view/product/add_products.php';
+				}
+				include 'view/product/add_products.php';
 			break;
 
 
 			case 'edit_products':
 					// code...
-			$id = $_GET['id'];
+				$id = $_GET['id'];
 
-			$editProducts = $backModel -> getProductsById($id);
-			
-			$oldProducts = $editProducts -> fetch_assoc();
+				$editProducts = $backModel -> getProductsById($id);
+				
+				$oldProducts = $editProducts -> fetch_assoc();
 
-			if (isset($_POST['edit_products'])) 
-			{
-				$title = $_POST['title'];
-				var_dump($title);
-				$description = $_POST['description'];
-				$price = $_POST['price'];
-				$image = $oldProducts['image'];
-
-				if ($_FILES['image']['error']==0) 
+				if (isset($_POST['edit_products'])) 
 				{
-					$image = $_FILES['image']['name'];
-					move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/products/'.$image);
+					$title = $_POST['title'];
+					var_dump($title);
+					$description = $_POST['description'];
+					$price = $_POST['price'];
+					$image = $oldProducts['image'];
+
+					if ($_FILES['image']['error']==0) 
+					{
+						$image = $_FILES['image']['name'];
+						move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/products/'.$image);
+					}
+						// var_dump($title);exit();
+					if ($backModel -> editProducts($id, $title,$description,$image,$price)==TRUE){
+						$libs-> redirectPage('admin.php?controller=products&action=list_products');
+					}
 				}
-					// var_dump($title);exit();
-				if ($backModel -> editProducts($id, $title,$description,$image,$price)==TRUE){
-					$libs-> redirectPage('admin.php?controller=products&action=list_products');
-				}
-			}
-			include 'view/product/edit_products.php';
+				include 'view/product/edit_products.php';
 			break;
 
 
 
 			case 'delete_products':
-			$id = $_GET['id'];
-			if ($backModel->deleteProducts($id)==TRUE) 
-			{
-				$libs-> redirectPage('admin.php?controller=products&action=list_products');
-			}
+				$id = $_GET['id'];
+				if ($backModel->deleteProducts($id)==TRUE) 
+				{
+					$libs-> redirectPage('admin.php?controller=products&action=list_products');
+				}
 			break;
 
 			default:
@@ -146,7 +146,8 @@ class BackendController
 			case 'delete_news':
 					// code...
 				$id = $_GET['id'];
-				if ($backModel->deleteNews($id)==TRUE) {
+				if ($backModel->deleteNews($id)==TRUE) 
+				{
 					$libs-> redirectPage(' admin.php?controller=news&action=list_news');
 				}
 					// var_dump('expression'); exit();
@@ -158,18 +159,21 @@ class BackendController
 				$editNews = $backModel->getNewsById($id);
 				$oldNews = $editNews -> fetch_assoc(); 
 
-				if (isset($_POST['edit_news'])) {
+				if (isset($_POST['edit_news'])) 
+				{
 					$title = $_POST['title'];
 					$description = $_POST['description'];
 					$image = $oldNews['image'];
-					if ($_FILES['image']['error']==0) {
+					if ($_FILES['image']['error']==0) 
+					{
 						$image = $_FILES['image']['name'];
 						move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/news/'.$image);
 					}
-				if ($backModel->editNews($id, $title, $description, $image)==TRUE) {
-					$libs-> redirectPage('admin.php?controller=news&action=list_news');
+					if ($backModel->editNews($id, $title, $description, $image)==TRUE) 
+					{
+						$libs-> redirectPage('admin.php?controller=news&action=list_news');
+					}
 				}
-			}
 				include 'view/new/edit_news.php';
 					// var_dump('expression'); exit();
 			break;
