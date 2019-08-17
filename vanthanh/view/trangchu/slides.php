@@ -8,12 +8,10 @@
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
 <script src="webroot/js/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<!-- <link rel="stylesheet" href="webroot/css/font-awesome.min.css"> -->
 
 	<style>
@@ -25,17 +23,15 @@
 	
 </head>
 <body>
-<div class="slide">
-	<div class="container">
+	<div id="slides">
+	<div class="container-fluid">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			</ol>
 
-			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
 					<img src="webroot/img/background1.jpg" alt="...">
@@ -46,7 +42,7 @@
 				<div class="item">
 					<img src="webroot/img/background2.jpg" alt="...">
 					<div class="carousel-caption">
-						...
+						<h2>WELCOME TO FLOWERON</h2>
 					</div>
 				</div>
 				...
@@ -64,7 +60,11 @@
 		</div>
 	</div>
 </div>
+
+
 <hr class="mt-2 mb-2">
+
+
 <div class="sanpham">
 	<div class="container">
 		<div class="row">
@@ -97,6 +97,25 @@
 						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="filter">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xl-6">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="active"><a href="">All</a></li>
+						<li><a href="#">Popular</a></li>
+						<li><a href="">Winter</a></li>
+						<li><a href="">Various</a></li>
+						<li><a href="#">Exotic</a></li>
+						<li><a href="#">Greens</a></li>
+						<li><a href="#">Cactuses</a></li>
+					</ul>
 			</div>
 		</div>
 	</div>

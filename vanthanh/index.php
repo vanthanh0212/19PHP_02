@@ -6,59 +6,41 @@ session_start();
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	
-	<!-- <link rel="stylesheet" href="webroot/css/bootstrap.min.css"> -->
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="webroot/js/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-	<!-- <link rel="stylesheet" href="webroot/css/font-awesome.min.css"> -->
-
+	<link rel="stylesheet" href="webroot/css/bootstrap.min.css">
+	<link rel="stylesheet" href="webroot/css/font-awesome.min.css">
+	<link rel="stylesheet" href="webroot/css/style_frontend.css">
 	<style>
 	.logout {
-		line-height: 50px;
-		color: white;
+		font-size: 11px;
 	}
-	</style>
+</style>
 	
 </head>
 <body>
-<div class="menutop">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-expand navbar-inverse" role="navigation">
+<div id="header-top">
+	<div class="container-fluid">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" role="navigation">
 			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header ">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">FrontEnd Website</a>
+					<a class="navbar-brand" href=""><img src="webroot/img/logo.png" alt=""></a>
 				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav navbar-left">
+					<ul class="nav navbar-nav ml-auto">
 						<li class="active"><a href="index.php?controller=front&action=home">Home</a></li>
 						<li><a href="#">Introduces</a></li>
 						<li><a href="index.php?controller=news&action=list_news">News</a></li>
 						<li><a href="index.php?controller=products&action=list_products">Products</a></li>
 						<li><a href="#">Contacts</a></li>
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
+<!-- 					<form class=" nav navbar-form" role="search">
+						<div class="form-group ">
 							<input type="text" class="form-control" placeholder="Search">
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
+						<button type="submit" class="btn">Submit</button>
+					</form> -->
+					<ul class="nav navbar-nav ml-auto">
 						<?php if (isset($_SESSION['login']['username'])) {?>
 							<li class="logout">Hi, <?php echo $_SESSION['login']['username']; ?></li>
 							<li><a href="index.php?controller=users&action=logout">Logout</a></li>
@@ -74,32 +56,13 @@ session_start();
 		</nav>
 	</div>
 </div>
-
-
-	<!-- <h1>FrontEnd Website</h1>
-	<nav id="nav">
-		<ul>
-			<li><a href="index.php?controller=front&action=home">Home</a></li>
-			<li><a href="index.php?controller=news&action=list_news">News</a></li>
-			<li><a href="index.php?controller=products&action=list_products">Products</a></li> -->
-
-			
-
-			<!-- </ul> -->
-			<!-- </nav> -->
 			<?php 
 			include 'controller/frontend_controller.php';
 			$front = new FrontendController();
 			$front->handleRequest();
 			?>
-			<!-- <script src="webroot/js/bootstrap.min.js"></script> -->
+			<script src="webroot/js/bootstrap.min.js"></script>
 
-			<script>
-				
-				function addCart($id) {
-					// body...
-					alert(id);
-				}
-			</script>
+<script src="webroot/js/jquery.min.js"></script>
 		</body>
 		</html>

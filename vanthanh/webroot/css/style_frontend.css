@@ -1,29 +1,35 @@
-.sanpham {
-	position: relative;
-	top: 10px;
-	left: 10px;
-	overflow: hidden;
-	cursor: pointer;
+body {
+	font-family: 'Roboto', sans-serif;
 }
-.xam {
-    width: 255px;
-    height: 255px;
-    background: red;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-    opacity: 0;
-    transition: 0.6s;
-    transform: scale(0);
-
+.navbar {
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 1rem;
+	letter-spacing: .1rem;
+	background: rgba(0, 0, 0 ,0.6) !important;
+	transition: 0.5s
 }
-.sanpham:hover .xam{
-	opacity: 0.5;
-	transform: scale(2);
+.navbar-collapse {
+	float: right;
+	margin-top: 5px;
+}
+.navbar-brand img {
+	height: 3rem;
+	transition: 0.5s
+}
+.navbar-nav li {
+	padding-right: 1rem;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+	color: white;
+	padding-top: .8rem;
+}
 
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover {
+	color: red;
+}
 
 /*.icon {
     position: absolute;
@@ -61,4 +67,47 @@
 .sanpham:hover .hinhvuong {
 	transform: scale(1);
 	opacity: 1;
+}
+.icon {
+	position: absolute;
+	bottom: 2%;
+	left: 5%;
+	opacity: 0;
+	z-index: 3;
+	transition: 0.5s;
+	transform: scale(0);
+}
+.sanpham:hover .icon {
+	transform: scale(1);
+	opacity: 1;
+}
+.sanpham {
+	position: relative;
+	top: 10px;
+	left: 10px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.xam {
+    width: 255px;
+    height: 255px;
+    background: red;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.6s;
+    transform: scale(0);
+
+}
+.sanpham:hover .xam{
+	opacity: 0.5;
+	transform: scale(2);
+}
+.title {
+	font-weight: bold;
+}
+.logo img {
+	width: 50%;
 }

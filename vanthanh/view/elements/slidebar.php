@@ -53,6 +53,18 @@
             <li><a href="admin.php?controller=news&action=add_news"><i class="fa fa-circle-o"></i> Add News</a></li>
           </ul>
         </li>
+        <li>
+          <a href="admin.php?controller=comment&action=list_comment">
+            Comment
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+<!--           <ul class="treeview-menu">
+            <li><a href="admin.php?controller=news&action=list_news"><i class="fa fa-circle-o"></i> List News</a></li>
+            <li><a href="admin.php?controller=news&action=add_news"><i class="fa fa-circle-o"></i> Add News</a></li>
+          </ul> -->
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

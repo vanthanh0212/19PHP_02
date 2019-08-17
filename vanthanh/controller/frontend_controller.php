@@ -28,19 +28,22 @@ class FrontendController {
 					// code...
 			$this->handleUsers($action,$frontModel,$libs);
 			break;
+			case 'comment':
+				$this->handleComment($action,$frontModel,$libs);
+				break;
 		}
 	}
 	function handleFront($action,$frontModel,$libs)
 	{
 		switch ($action) {
 			case 'home':
-			include 'view/trangchu/slides.php';
+				include 'view/trangchu/slides.php';
 				// code...
-				break;
+			break;
 			
 			default:
 				// code...
-				break;
+			break;
 		}
 	}
 	function handleNews($action,$frontModel,$libs)
@@ -59,20 +62,18 @@ class FrontendController {
 			case 'detail_products':
 				$id = $_GET['id'];
 					// code...
+					// var_dump($id);
+					// exit();
 				$detailProducts = $frontModel -> getProductsById($id);
-				$detailProducts = $detailProducts->fetch_assoc();
-				include 'view/products/detail_product.php';
-			break;
 
-			case 'buy_products':
-				$id = $_GET['id'];
-					// code...
-				$buyProducts = $frontModel -> buyProductsById($id);
-				
-				$buyProducts = $buyProducts->fetch_assoc();
-				// var_dump($buyProducts);
-				// exit();
-				include 'view/products/buy_product.php';
+				$detailProducts = $detailProducts->fetch_assoc();
+					// var_dump($detailProducts);
+					// exit();
+				// get comment của product ra
+				$listComment = $frontModel ->getListComment($id);
+				// var_dump($listComment);
+				// 	exit();
+				include 'view/products/detail_product.php';
 			break;
 			
 			default:
@@ -88,8 +89,8 @@ class FrontendController {
 				// code...
 			if (isset($_POST['login'])) {
 				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$role = $_POST['role'];
+				$password = ($_POST['password']);
+				// $role = $_POST['role'];
 				
 				$checkLogin = $frontModel -> login($username, $password);
 				if ($checkLogin -> num_rows) {
@@ -113,7 +114,7 @@ class FrontendController {
 				// code...
 			if (isset($_POST['register'])) {
 				$username = $_POST['username'];
-				$password = $_POST['password'];
+				$password = md5($_POST['password']);
 				$role = $_POST['role'];
 				// $errorUsername = '';
 				// $errorPassword = '';
@@ -147,6 +148,43 @@ class FrontendController {
 			default:
 				// code...
 			break;
+		}
+	}
+	function handleComment($action,$frontModel,$libs)
+	{
+		switch ($action) {
+			case 'add_comment':
+			$productId = $_GET['productId'];
+
+				// code...
+			if (isset($_POST['add_comment'])) {
+				if (isset($_SESSION['login'])) 
+				{
+					$content = $_POST['content'];
+					
+
+					$users = $frontModel -> getUserId($_SESSION['login']['username']);
+					$userId = $users ->fetch_assoc();
+
+					$userId = $userId['id'];
+
+					if ($frontModel->addComment($userId, $productId, $content)===TRUE) 
+					{
+						// echo 'thành công';
+						// exit();
+						$libs ->redirectPage("index.php?controller=products&action=detail_products&id=$productId");
+					}
+				}
+				else
+				{
+					$libs ->redirectPage('index.php?controller=users&action=login');
+				}
+			}
+				break;
+			
+			default:
+				// code...
+				break;
 		}
 	}
 }

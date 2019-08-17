@@ -62,5 +62,25 @@
 			$sql = "UPDATE news SET title = '$title', description = '$description', image='$image' WHERE id = $id";
 			return mysqli_query($this->connect(),$sql);
 		}
+
+		//end model news
+
+		//start model comment
+		function getListComment()
+		{
+			$sql = "SELECT comment.id, comment.content, comment.created, comment.productId, comment.status, products.title, products.id as productId FROM comment INNER JOIN products ON products.id = comment.productId";
+			return mysqli_query($this->connect(),$sql);
+		}
+
+		function approveComment($id)
+		{
+			$sql = "UPDATE comment SET status = 0 WHERE id =$id";
+			return mysqli_query($this->connect(),$sql);
+		}
+			function notApproveComment($id)
+		{
+			$sql = "UPDATE comment SET status = 1 WHERE id =$id";
+			return mysqli_query($this->connect(),$sql);
+		}
 	}
  ?>

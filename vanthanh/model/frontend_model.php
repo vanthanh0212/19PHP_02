@@ -39,17 +39,38 @@ include 'config/database.php';
 		}
 		function getProductsById($id)
 		{
-			$sql = "SELECT * FROM products WHERE id =$id";
+			$sql = "SELECT * FROM products WHERE id = '$id'";
 			return mysqli_query($this->connect(),$sql);
 		}
 
-		function buyProductsById($id)
+		// function getListComment()
+		// {
+		// 	$sql = "SELECT * FROM comment";
+		// 	return mysqli_query($this->connect(),$sql);
+		// }
+		function getUserId($username)
 		{
-			$sql = "SELECT 'title','image', 'price' FROM products WHERE id =$id";
+			$sql = "SELECT id FROM users WHERE username = '$username'";
+			return mysqli_query($this->connect(),$sql);
+		}
+		function addComment( $userId,$productId, $content)
+		{
+			date_default_timezone_set('Asia/Ho_Chi_Minh');
+			$created = date('Y-m-d h:i:s');
+			$status = 1;
+			$sql = "INSERT INTO comment (userId,productId,content, created, status)VALUES ( $userId, $productId, '$content' , '$created' , '$status')";
+			// var_dump($sql);
+			// exit();
 			return mysqli_query($this->connect(),$sql);
 		}
 
-
+		function getListComment($productId)
+		{
+			$sql = "SELECT * FROM comment
+			INNER JOIN users ON comment.userId = users.id
+			WHERE productId = $productId AND status = 1";
+			return mysqli_query($this->connect(),$sql);
+		}
 		 
 	}
-	?>
+?>

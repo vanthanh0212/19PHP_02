@@ -28,6 +28,12 @@ class BackendController
 			$this->handleNews($action,$backModel,$libs);
 			break;
 
+			case 'comment':
+					// code...
+			
+			$this->handleComment($action,$backModel,$libs);
+			break;
+
 			default:
 					// code...
 			break;
@@ -181,6 +187,34 @@ class BackendController
 			default:
 				// code...
 			break;
+		}
+	}
+	function handleComment($action,$backModel,$libs)
+	{
+		switch ($action) {
+			case 'list_comment':
+				$listComment = $backModel-> getListComment();
+				include 'view/comment/list_comment.php';
+				// code...
+			break;
+
+			case 'approve':
+				$id = $_GET['id'];
+				if ($backModel->approveComment($id)===TRUE) {
+					$libs -> redirectPage('admin.php?controller=comment&action=list_comment');
+				}
+				// code...
+			break;
+			case 'not_approve':
+				$id = $_GET['id'];
+				if ($backModel->notApproveComment($id)===TRUE) {
+					$libs -> redirectPage('admin.php?controller=comment&action=list_comment');
+				}
+				// code...
+			break;
+			default:
+				// code...
+				break;
 		}
 	}
 }
